@@ -5,11 +5,12 @@ import com.epam.jmp.redislab.configuration.ratelimit.RateLimitTimeInterval;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 public class RateLimitConfigurationTest {
@@ -17,7 +18,7 @@ public class RateLimitConfigurationTest {
     @Test
     public void testConfigurationParsing() throws IOException {
         RateLimitConfiguration rateLimitConfiguration = new RateLimitConfiguration();
-        Set<RateLimitRule> rateLimitRules = rateLimitConfiguration.rateLimitRules();
+        Collection<RateLimitRule> rateLimitRules = rateLimitConfiguration.rateLimitRules();
 
         Set<RateLimitRule> expectedRules = new HashSet<>();
         expectedRules.add(new RateLimitRule(Optional.of(""), Optional.empty(), Optional.empty(), 2, RateLimitTimeInterval.MINUTE));
