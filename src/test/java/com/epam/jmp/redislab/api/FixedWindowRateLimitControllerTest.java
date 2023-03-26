@@ -1,6 +1,9 @@
 package com.epam.jmp.redislab.api;
 
 import com.epam.jmp.redislab.utils.RateLimitResponseStats;
+import com.epam.jmp.redislab.utils.RestTemplateErrorHandler;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Value;
@@ -34,6 +37,11 @@ class FixedWindowRateLimitControllerTest {
 
     @Value("http://localhost:${local.server.port}/api/v1/ratelimit/fixedwindow")
     private String apiUrl;
+
+    @BeforeEach
+    void setUp() {
+        restTemplate.setErrorHandler(new RestTemplateErrorHandler());
+    }
 
     // 2 requests per minute per accountId rule
     @Test

@@ -11,8 +11,8 @@ import org.springframework.core.io.ClassPathResource;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashSet;
-import java.util.Set;
 
 @Configuration
 public class RateLimitConfiguration {
@@ -25,7 +25,7 @@ public class RateLimitConfiguration {
     }
 
     @Bean
-    public Set<RateLimitRule> rateLimitRules() throws IOException {
+    public Collection<RateLimitRule> rateLimitRules() throws IOException {
         ClassPathResource ratelimitConfigurationResource = new ClassPathResource("ratelimitRules.yaml");
         InputStream inputStream = ratelimitConfigurationResource.getInputStream();
         return new HashSet<>(Arrays.asList(objectMapper.readValue(inputStream, RateLimitRule[].class)));
